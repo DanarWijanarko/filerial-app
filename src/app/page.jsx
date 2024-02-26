@@ -1,10 +1,32 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import {
+	baseImgUrl,
+	getallKoreanSeries,
+	getAllChineseSeries,
+} from "@/libs/tmdb-api";
+
+import ListsTray from "@/components/ListsTray";
+
+export default async function Home() {
+	const allKoreanSeries = await getallKoreanSeries(1);
+	const allChineseSeries = await getAllChineseSeries(1);
+
 	return (
-		<main className="flex min-h-screen flex-col justify-center pt-10 px-32">
-			<h1 className="text-white text-3xl font-bold">Halooo</h1>
+		<section className="flex min-h-screen flex-col justify-start">
+			<ListsTray
+				headerTitle="Korean Shows"
+				datas={allKoreanSeries}
+				baseImgUrl={baseImgUrl}
+			/>
 
-		</main>
+			<ListsTray
+				headerTitle="Chinese Shows"
+				datas={allChineseSeries}
+				baseImgUrl={baseImgUrl}
+			/>
+
+			<span className="mb-96"></span>
+		</section>
 	);
 }
