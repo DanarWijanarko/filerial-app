@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import Slider from "@/Utilities/Slider";
+import Slider from "@/components/Utilities/Slider";
 
 const ListsTray = ({ headerTitle, datas, baseImgUrl }) => {
 	const slug = headerTitle.replace(/ /g, "-").toLowerCase();

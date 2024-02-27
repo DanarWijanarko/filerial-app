@@ -1,20 +1,39 @@
 import axios from "axios";
 
-const apiKey = process.env.NEXT_APIKEY;
-const baseUrl = process.env.NEXT_BASEURL;
-export const baseImgUrl = process.env.NEXT_BASEIMGURL;
+const apiKey = process.env.NEXT_PUBLIC_APIKEY;
+const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
+export const baseImgUrl = process.env.NEXT_PUBLIC_BASEIMGURL;
 
-export const getallKoreanSeries = async (page) => {
+export const searchMulti = async (query) => {
+	const response = await axios.get(`${baseUrl}/search/multi`, {
+		params: {
+			api_key: apiKey,
+			query: query,
+			page: "1",
+		},
+	});
+	return response.data.results;
+};
+
+export const getAllTrending = async () => {
 	const response = await axios.get(
-		`${baseUrl}/discover/tv?include_adult=true&include_null_first_air_dates=false&with_origin_country=KR|CN&page=${page}&sort_by=vote_count.desc&api_key=${apiKey}`
+		`${baseUrl}/trending/all/day?api_key=${apiKey}`
 	);
 	return response.data.results;
 };
 
-export const getAllChineseSeries = async (page) => {
-	const response = await axios.get(
-		`${baseUrl}/discover/tv?include_adult=true&include_null_first_air_dates=false&with_origin_country=CN&page=${page}&sort_by=vote_count.desc&api_key=${apiKey}`
-	);
+export const getSeriesDiscovered = async (year, country, page) => {
+	const response = await axios.get(`${baseUrl}/discover/tv`, {
+		params: {
+			api_key: apiKey,
+			include_adult: false,
+			include_null_first_air_dates: false,
+			first_air_date_year: year,
+			with_origin_country: country,
+			sort_by: "popularity.desc",
+			page: page,
+		},
+	});
 	return response.data.results;
 };
 

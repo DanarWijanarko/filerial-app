@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import clsx from "clsx";
 
 const NavButton = ({ path, icon, profilePic, name, isProfile = false }) => {
 	const pathname = usePathname();
@@ -26,9 +27,12 @@ const NavButton = ({ path, icon, profilePic, name, isProfile = false }) => {
 	) : (
 		<Link
 			href={path}
-			className={`${
-				pathname == path && "text-white"
-			} flex justify-center items-center gap-4 text-gray-500 text-xl hover:translate-x-2 hover:text-white transition-all duration-200`}
+			className={clsx(
+				"flex justify-center items-center gap-4 text-gray-500 text-xl hover:translate-x-2 hover:text-white transition-all duration-200",
+				{
+					"text-white": pathname === path,
+				}
+			)}
 		>
 			<i
 				className={`fa-solid ${icon} w-8 font-extrabold text-2xl duration-200 z-10`}

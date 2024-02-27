@@ -13,6 +13,7 @@
 		"@glidejs/glide": "^3.6.0",
 		"@phosphor-icons/react": "^2.0.15",
 		"axios": "^1.6.7",
+		"clsx": "^2.1.0",
 		"next": "14.1.0",
 		"react": "^18",
 		"react-dom": "^18",

@@ -1,16 +1,10 @@
-import Link from "next/link";
-
-import {
-	baseImgUrl,
-	getallKoreanSeries,
-	getAllChineseSeries,
-} from "@/libs/tmdb-api";
+import { baseImgUrl, getSeriesDiscovered } from "@/libs/tmdb-api";
 
 import ListsTray from "@/components/ListsTray";
 
 export default async function Home() {
-	const allKoreanSeries = await getallKoreanSeries(1);
-	const allChineseSeries = await getAllChineseSeries(1);
+	const allKoreanSeries = await getSeriesDiscovered(2022, "KR", 1);
+	const allChineseSeries = await getSeriesDiscovered(2022, "CN", 1);
 
 	return (
 		<section className="flex min-h-screen flex-col justify-start">
