@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const apiKey = process.env.NEXT_PUBLIC_APIKEY;
+const apiKey = process.env.NEXT_APIKEY;
 const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
 export const baseImgUrl = process.env.NEXT_PUBLIC_BASEIMGURL;
 
