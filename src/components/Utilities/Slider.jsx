@@ -28,20 +28,40 @@ const Slider = ({ children }) => {
 	}, []);
 
 	return (
-		<div className="relative ml-7 glide-01">
+		<div className="relative ml-7 glide-01 group/controls">
 			{/*    <!-- Slides --> */}
 			<div
-				className="overflow-hidden p-5 z-20 pr-5"
+				className="overflow-hidden py-5 pl-[10px] z-20 pr-5"
 				data-glide-el="track"
 			>
-				<ul className="whitespace-no-wrap flex-no-wrap flex justify-center items-center w-full ">
+				<ul className="whitespace-no-wrap flex-no-wrap flex justify-center items-center w-full">
 					{children}
 				</ul>
 			</div>
 
-			{/*    <!-- Controls --> */}
 			<div
-				className="absolute right-0 flex items-center justify-between w-full h-0 top-1/2 z-10"
+				className="opacity-0 group-hover/controls:opacity-100 transition-all duration-500"
+				data-glide-el="controls"
+			>
+				<button
+					className="absolute left-0 top-0 bottom-0 bg-gradient-to-r from-[#0f1014] to-transparent pl-6 pr-16 z-0"
+					data-glide-dir="<"
+					aria-label="prev slide"
+				>
+					<i className="fa-solid fa-chevron-left text-white text-3xl"></i>
+				</button>
+				<button
+					className="absolute right-0 top-0 bottom-0 bg-gradient-to-l from-[#0f1014] to-transparent pr-6 pl-16 z-0"
+					data-glide-dir=">"
+					aria-label="next slide"
+				>
+					<i className="fa-solid fa-chevron-right text-white text-3xl"></i>
+				</button>
+			</div>
+
+			{/*    <!-- Controls --> */}
+			{/* <div
+				className="absolute right-0 group-hover/controls:opacity-100 flex opacity-100 pl-5 items-center justify-between w-full top-1/2 z-10 transition-all h-0 bg-black"
 				data-glide-el="controls"
 			>
 				<button
@@ -58,7 +78,7 @@ const Slider = ({ children }) => {
 				>
 					<i className="fa-solid fa-chevron-right text-3xl"></i>
 				</button>
-			</div>
+			</div> */}
 		</div>
 	);
 };

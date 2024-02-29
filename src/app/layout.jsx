@@ -1,6 +1,8 @@
 import { Recursive } from "next/font/google";
 import "./globals.css";
+
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const recursive = Recursive({
 	subsets: ["latin"],
@@ -16,11 +18,12 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body
-				className={`${recursive.className} bg-[#0f1014] ps-24`}
+				className={`${recursive.className} bg-[#0f1014] ps-16`}
 				suppressHydrationWarning={true}
 			>
 				<Navbar />
 				{children}
+				<Footer />
 			</body>
 		</html>
 	);

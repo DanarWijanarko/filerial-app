@@ -3,13 +3,14 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { baseImgUrl, getAllTrending, searchMulti } from "@/libs/tmdb-api";
+import { getAllTrending, Search } from "@/libs/tmdb-api";
 
 import AllCards from "@/components/card/AllCards";
 import InputSearch from "@/components/InputSearch";
 
-const Search = () => {
+const Page = () => {
 	const searchParams = useSearchParams();
+	const search = new Search();
 
 	const [allTrending, setAllTrending] = useState([]);
 
@@ -20,7 +21,7 @@ const Search = () => {
 	}, [searchParams]);
 
 	if (searchParams.has("query")) {
-		searchMulti(searchParams.get("query")).then((res) => {
+		search.multi(searchParams.get("query")).then((res) => {
 			setAllTrending(res);
 		});
 	} else {
@@ -30,7 +31,7 @@ const Search = () => {
 	}
 
 	return (
-		<div className="mt-10 mx-11 mb-96">
+		<div className="mt-10 mx-11">
 			<InputSearch />
 
 			<div className="flex justify-start text-xl font-bold mt-10">
@@ -43,15 +44,11 @@ const Search = () => {
 
 			<div className="flex flex-wrap gap-[29.5px] mt-5 justify-center items-center">
 				{allTrending.map((trending) => (
-					<AllCards
-						key={trending.id}
-						data={trending}
-						baseImgUrl={baseImgUrl}
-					/>
+					<AllCards key={trending.id} data={trending} />
 				))}
 			</div>
 		</div>
 	);
 };
 
-export default Search;
+export default Page;
