@@ -2,7 +2,8 @@ import React from "react";
 import Image from "next/image";
 
 import Link from "next/link";
-import { Series } from "@/libs/tmdb-api";
+
+import { EndPoint } from "@/libs/endPoint";
 
 const SeriesDetail = async ({ detailSeries, baseImgUrl }) => {
 	const rating = parseFloat(detailSeries.vote_average).toFixed(1);
@@ -66,14 +67,12 @@ const SeriesDetail = async ({ detailSeries, baseImgUrl }) => {
 				</p>
 				<div className="grid grid-cols-3 max-w-fit gap-5 mt-3">
 					{detailSeries.production_companies.map((company) => {
-						const slug = company.name
-							.replace(/ /g, "-")
-							.toLowerCase();
+						const slug = new EndPoint().encodeSlug(company.name);
 
 						return (
 							<Link
 								key={company.id}
-								href={`/browse/company?name=${slug}&id=${company.id}`}
+								href={`/browse/company?title=${slug}&id=${company.id}&type=shows`}
 								className="h-16 w-16 flex justify-center items-center bg-slate-200 rounded-full"
 							>
 								{company.logo_path ? (

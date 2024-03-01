@@ -4,10 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const recursive = Recursive({
-	subsets: ["latin"],
-	weight: ["300", "400", "500", "600", "700", "800", "900", "1000"],
-});
+const recursive = Recursive({ subsets: ["latin"] });
 
 export const metadata = {
 	title: "Filerial",

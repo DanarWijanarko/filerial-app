@@ -20,7 +20,7 @@ const VideoPlayer = ({ videoId }) => {
 			<button
 				className={`${
 					isOpen ? "scale-0" : "scale-100"
-				} fixed bottom-3 right-3 bg-[#16181f] px-3 py-1 rounded-full text-white font-bold origin-bottom-right transition-all duration-500`}
+				} fixed bottom-3 right-3 bg-[#252833] px-3 py-1 rounded-full text-white font-bold hover:bg-[#2f323f] origin-bottom-right transition-all duration-500`}
 				onClick={handleIsOpen}
 			>
 				Open Trailer

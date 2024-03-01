@@ -1,8 +1,6 @@
 import { getListFromCompany } from "@/libs/tmdb-api";
 
 import ListsTray from "@/components/ListsTray";
-import { Suspense } from "react";
-import Loading from "@/app/loading";
 
 export default async function Home() {
 	const company = [

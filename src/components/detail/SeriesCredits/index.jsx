@@ -1,17 +1,19 @@
 import Link from "next/link";
 import Image from "next/image";
 
+import { EndPoint } from "@/libs/endPoint";
+
 const SeriesCredits = ({ seriesCredits, baseImgUrl }) => {
 	return (
 		<>
 			<h1 className="text-slate-200 text-4xl font-semibold mx-8">Cast</h1>
 			<div className="flex flex-wrap justify-center gap-8 mt-8 mx-8">
 				{seriesCredits.cast?.map((credit) => {
-					const slug = credit.name.replace(/ /g, "-").toLowerCase();
+					const name = new EndPoint().encodeSlug(credit.name);
 
 					return (
 						<Link
-							href={`/people/${slug}/detail/${credit.id}`}
+							href={`/browse/people?person_name=${name}&person_id=${credit.id}`}
 							key={credit.id}
 						>
 							<div className="bg-[#d3d8ec] flex flex-row rounded-lg">

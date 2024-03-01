@@ -1,3 +1,5 @@
+import { getCountryName } from "./countryIso";
+
 const baseImgUrl = process.env.NEXT_PUBLIC_BASEIMGURL;
 
 export const Responses = (res) => {
@@ -5,7 +7,7 @@ export const Responses = (res) => {
 	const backdrop = baseImgUrl + res.backdrop_path;
 	const name = res.name ? res.name : res.title;
 	const countries = res.origin_country
-		? res.origin_country[0]
+		? getCountryName(res.origin_country[0])
 		: res.original_language;
 	const rating = parseFloat(res.vote_average).toFixed(1);
 	const year = new Date(

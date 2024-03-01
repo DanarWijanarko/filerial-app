@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Slider from "@/components/Utilities/Slider";
+import { EndPoint } from "@/libs/endPoint";
 
 const SeriesRecommendations = ({ seriesRecommendations, baseImgUrl }) => {
 	return (
@@ -27,9 +28,8 @@ const SeriesRecommendations = ({ seriesRecommendations, baseImgUrl }) => {
 						adult = "17+";
 					}
 
-					const slug = recommended.name
-						.replace(/ /g, "-")
-						.toLowerCase();
+					const slug = new EndPoint().encodeSlug(recommended.name);
+
 					return (
 						<li
 							key={recommended.id}

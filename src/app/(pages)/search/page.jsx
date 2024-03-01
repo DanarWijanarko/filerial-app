@@ -7,6 +7,7 @@ import { getAllTrending, Search } from "@/libs/tmdb-api";
 
 import AllCards from "@/components/card/AllCards";
 import InputSearch from "@/components/InputSearch";
+import CompanyCard from "@/components/card/CompanyCard";
 
 const Page = () => {
 	const searchParams = useSearchParams();
@@ -14,20 +15,56 @@ const Page = () => {
 
 	const [allTrending, setAllTrending] = useState([]);
 
+	let content;
+
 	useEffect(() => {
-		getAllTrending().then((res) => {
-			setAllTrending(res);
-		});
+		const fetchData = async () => {
+			try {
+				let response;
+				if (searchParams.has("query")) {
+					const filterParams = searchParams.get("filter");
+					const queryParams = searchParams.get("query");
+					if (filterParams === "movieSeries") {
+						response = await search.multi(queryParams);
+					} else if (filterParams === "companies") {
+						response = await search.company(queryParams);
+					} else if (filterParams === "collections") {
+						response = await search.collection(queryParams);
+					}
+				} else {
+					response = await getAllTrending();
+				}
+				setAllTrending(response);
+			} catch (error) {
+				// Handle errors here
+				console.error("Error fetching data:", error);
+			}
+		};
+
+		fetchData();
 	}, [searchParams]);
 
-	if (searchParams.has("query")) {
-		search.multi(searchParams.get("query")).then((res) => {
-			setAllTrending(res);
-		});
+	// console.log(allTrending);
+
+	if (searchParams.has("filter")) {
+		if (searchParams.get("filter") === "movieSeries") {
+			content = allTrending.map((trending) => (
+				<AllCards key={trending.id} data={trending} />
+			));
+		} else if (searchParams.get("filter") === "companies") {
+			content = content = allTrending.map((trending) => (
+				<CompanyCard
+					key={trending.id}
+					data={trending}
+					typeParams={searchParams.get("type")}
+				/>
+			));
+		} else if (searchParams.get("filter") === "collections") {
+		}
 	} else {
-		getAllTrending().then((res) => {
-			setAllTrending(res);
-		});
+		content = allTrending.map((trending) => (
+			<AllCards key={trending.id} data={trending} />
+		));
 	}
 
 	return (
@@ -43,9 +80,7 @@ const Page = () => {
 			</div>
 
 			<div className="flex flex-wrap gap-[29.5px] mt-5 justify-center items-center">
-				{allTrending.map((trending) => (
-					<AllCards key={trending.id} data={trending} />
-				))}
+				{content}
 			</div>
 		</div>
 	);

@@ -21,7 +21,9 @@ const DetailShow = async ({ params }) => {
 	const videoId =
 		seriesVideo.length < 1
 			? "null"
-			: seriesVideo.filter((x) => x.type === "Trailer")[0].key;
+			: seriesVideo.filter(
+					(x) => x.type === "Trailer" || x.type === "Teaser"
+			  )[0].key;
 
 	return (
 		<>
