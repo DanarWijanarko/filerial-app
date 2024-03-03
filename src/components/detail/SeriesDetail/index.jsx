@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import Link from "next/link";
 
-import { EndPoint } from "@/libs/endPoint";
+import { EndPoint } from "@/libs/end-point";
 
 const SeriesDetail = async ({ detailSeries, baseImgUrl }) => {
 	const rating = parseFloat(detailSeries.vote_average).toFixed(1);

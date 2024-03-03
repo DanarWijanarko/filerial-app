@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { baseImgUrl } from "@/libs/tmdb-api";
-import { getCountryName } from "@/libs/countryIso";
-import { EndPoint } from "@/libs/endPoint";
+import { getCountryName } from "@/libs/country-iso";
+import { EndPoint } from "@/libs/end-point";
 
 const CompanyCard = ({ data, typeParams }) => {
 	const slug = new EndPoint().encodeSlug(data.name ? data.name : "");

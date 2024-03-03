@@ -3,15 +3,13 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import { Movies, Series } from "@/libs/tmdb-api";
-import { EndPoint } from "@/libs/endPoint";
+import { getListFromCompany } from "@/libs/tmdb-api";
+import { EndPoint } from "@/libs/end-point";
 
 import AllCards from "@/components/card/AllCards";
 
 const Page = () => {
 	const searchParams = useSearchParams();
-	const series = new Series();
-	const movies = new Movies();
 
 	const [list, setList] = useState([]);
 
@@ -21,11 +19,11 @@ const Page = () => {
 
 	useEffect(() => {
 		if (type === "shows") {
-			series.getListFromCompany(companyId).then((result) => {
+			getListFromCompany(companyId, "tv", 1).then((result) => {
 				setList(result);
 			});
 		} else if (type === "movies") {
-			movies.getListFromCompany(companyId).then((result) => {
+			getListFromCompany(companyId, "movie", 1).then((result) => {
 				setList(result);
 			});
 		}

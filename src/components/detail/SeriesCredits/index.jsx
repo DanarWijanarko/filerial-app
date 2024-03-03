@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { EndPoint } from "@/libs/endPoint";
+import { EndPoint } from "@/libs/end-point";
 
 const SeriesCredits = ({ seriesCredits, baseImgUrl }) => {
 	return (
@@ -13,7 +13,7 @@ const SeriesCredits = ({ seriesCredits, baseImgUrl }) => {
 
 					return (
 						<Link
-							href={`/browse/people?person_name=${name}&person_id=${credit.id}`}
+							href={`/browse/people/detail?person_name=${name}&person_id=${credit.id}`}
 							key={credit.id}
 						>
 							<div className="bg-[#d3d8ec] flex flex-row rounded-lg">

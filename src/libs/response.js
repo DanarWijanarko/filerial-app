@@ -1,4 +1,4 @@
-import { getCountryName } from "./countryIso";
+import { getCountryName } from "./country-iso";
 
 const baseImgUrl = process.env.NEXT_PUBLIC_BASEIMGURL;
 

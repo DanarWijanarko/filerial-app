@@ -13,6 +13,20 @@ export const getAllTrending = async () => {
 	return response.data.results;
 };
 
+export const getListFromCompany = async (company_id, media_type, page) => {
+	const response = await axios.get(`${baseUrl}/discover/${media_type}`, {
+		params: {
+			api_key: apiKey,
+			include_adult: false,
+			include_null_first_air_dates: false,
+			with_companies: company_id,
+			sort_by: "popularity.desc",
+			page: page,
+		},
+	});
+	return response.data.results;
+};
+
 export class Search {
 	multi = async (query) => {
 		const response = await axios.get(`${baseUrl}/search/multi`, {
@@ -126,19 +140,56 @@ export class Series {
 		});
 		return response.data.results;
 	};
+}
 
-	getListFromCompany = async (company_id) => {
-		const response = await axios.get(`${baseUrl}/discover/tv`, {
+export class Person {
+	constructor(person_id) {
+		this.id = person_id;
+	}
+
+	getDetail = async () => {
+		const response = await axios.get(`${baseUrl}/person/${this.id}`, {
 			params: {
 				api_key: apiKey,
-				include_adult: false,
-				include_null_first_air_dates: false,
-				with_companies: company_id,
-				sort_by: "popularity.desc",
-				page: "1",
 			},
 		});
-		return response.data.results;
+		return response.data;
+	};
+
+	getImageList = async () => {
+		const response = await axios.get(
+			`${baseUrl}/person/${this.id}/images`,
+			{
+				params: {
+					api_key: apiKey,
+				},
+			}
+		);
+		return response.data.profiles;
+	};
+
+	getSeriesList = async () => {
+		const response = await axios.get(
+			`${baseUrl}/person/${this.id}/tv_credits`,
+			{
+				params: {
+					api_key: apiKey,
+				},
+			}
+		);
+		return response.data.cast;
+	};
+
+	getMoviesList = async () => {
+		const response = await axios.get(
+			`${baseUrl}/person/${this.id}/movie_credits`,
+			{
+				params: {
+					api_key: apiKey,
+				},
+			}
+		);
+		return response;
 	};
 }
 
@@ -150,19 +201,5 @@ export class Movies {
 			},
 		});
 		return response.data;
-	};
-
-	getListFromCompany = async (company_id) => {
-		const response = await axios.get(`${baseUrl}/discover/movie`, {
-			params: {
-				api_key: apiKey,
-				include_adult: false,
-				include_null_first_air_dates: false,
-				with_companies: company_id,
-				sort_by: "popularity.desc",
-				page: "1",
-			},
-		});
-		return response.data.results;
 	};
 }

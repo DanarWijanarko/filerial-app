@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { Series, baseImgUrl } from "@/libs/tmdb-api";
+import { MyDate } from "@/libs/my-date";
 
 const SeriesEpisodes = ({ detailSeries }) => {
 	const series = new Series();
@@ -46,10 +47,10 @@ const SeriesEpisodes = ({ detailSeries }) => {
 
 			<div className="flex flex-col gap-7 mt-8 mx-8">
 				{seriesEpisodes.map((episode, i) => {
-					const date = new Date(episode.air_date).toDateString();
-
-					const hours = Math.floor(episode.runtime / 60);
-					const minutes = episode.runtime % 60;
+					const date = new MyDate(episode.air_date).formatYYYYMMDD();
+					const runtime = new MyDate().getHoursMinutes(
+						episode.runtime
+					);
 
 					return (
 						<div className="flex flex-row gap-7" key={i}>
@@ -90,8 +91,10 @@ const SeriesEpisodes = ({ detailSeries }) => {
 										&#x2022;
 									</p>
 									<p className="text-slate-200 text-md font-bold">
-										{hours ? hours + `h ` : ""}
-										{minutes + `m`}
+										{runtime.hours
+											? runtime.hours + `h `
+											: ""}
+										{runtime.minutes + `m`}
 									</p>
 								</div>
 								<p className="text-slate-200 text-md mt-1">

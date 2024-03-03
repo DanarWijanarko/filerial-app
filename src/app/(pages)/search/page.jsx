@@ -36,7 +36,6 @@ const Page = () => {
 				}
 				setAllTrending(response);
 			} catch (error) {
-				// Handle errors here
 				console.error("Error fetching data:", error);
 			}
 		};
@@ -44,27 +43,26 @@ const Page = () => {
 		fetchData();
 	}, [searchParams]);
 
-	// console.log(allTrending);
-
-	if (searchParams.has("filter")) {
-		if (searchParams.get("filter") === "movieSeries") {
+	switch (searchParams.get("filter")) {
+		case "movieSeries":
 			content = allTrending.map((trending) => (
 				<AllCards key={trending.id} data={trending} />
 			));
-		} else if (searchParams.get("filter") === "companies") {
-			content = content = allTrending.map((trending) => (
+			break;
+		case "companies":
+			content = allTrending.map((trending) => (
 				<CompanyCard
 					key={trending.id}
 					data={trending}
 					typeParams={searchParams.get("type")}
 				/>
 			));
-		} else if (searchParams.get("filter") === "collections") {
-		}
-	} else {
-		content = allTrending.map((trending) => (
-			<AllCards key={trending.id} data={trending} />
-		));
+			break;
+		// Search by Person
+		default:
+			content = allTrending.map((trending) => (
+				<AllCards key={trending.id} data={trending} />
+			));
 	}
 
 	return (

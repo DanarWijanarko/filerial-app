@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Slider from "@/components/Utilities/Slider";
-import { EndPoint } from "@/libs/endPoint";
+import { EndPoint } from "@/libs/end-point";
 
 const SeriesRecommendations = ({ seriesRecommendations, baseImgUrl }) => {
 	return (
