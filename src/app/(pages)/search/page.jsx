@@ -66,7 +66,7 @@ const Page = () => {
 	}
 
 	return (
-		<div className="mt-10 mx-11">
+		<div className="pt-10 mx-11">
 			<InputSearch />
 
 			<div className="flex justify-start text-xl font-bold mt-10">

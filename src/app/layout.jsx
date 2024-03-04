@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
 			<body
-				className={`${recursive.className} bg-[#0f1014] ps-16`}
+				className={`${recursive.className} min-h-screen bg-[#0f1014] ps-16`}
 				suppressHydrationWarning={true}
 			>
 				<Navbar />

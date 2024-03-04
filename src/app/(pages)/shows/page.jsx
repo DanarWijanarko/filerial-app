@@ -1,8 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import { Series } from "@/libs/tmdb-api";
 
 import ListsTray from "@/components/ListsTray";
+import Loading from "./loading";
 
 const Shows = async () => {
 	const series = new Series();
@@ -13,33 +14,35 @@ const Shows = async () => {
 	const allChineseSeries = await series.getDiscovered(2020, "CN", 1);
 
 	return (
-		<section className="flex min-h-screen flex-col justify-start">
-			<ListsTray
-				headerTitle="New Korean Release"
-				headerHref={"/"}
-				mediaType="shows"
-				datas={newKoreanRelease}
-			/>
+		<Suspense fallback={<Loading />}>
+			<section className="flex min-h-screen flex-col justify-start">
+				<ListsTray
+					headerTitle="New Korean Release"
+					headerHref={"/"}
+					mediaType="shows"
+					datas={newKoreanRelease}
+				/>
 
-			<ListsTray
-				headerTitle="Korean Shows"
-				headerHref={"/"}
-				datas={allKoreanSeries}
-			/>
+				<ListsTray
+					headerTitle="Korean Shows"
+					headerHref={"/"}
+					datas={allKoreanSeries}
+				/>
 
-			<ListsTray
-				headerTitle="New Chinese Release"
-				headerHref={"/"}
-				mediaType="shows"
-				datas={newChineseRelease}
-			/>
+				<ListsTray
+					headerTitle="New Chinese Release"
+					headerHref={"/"}
+					mediaType="shows"
+					datas={newChineseRelease}
+				/>
 
-			<ListsTray
-				headerTitle="Chinese Shows"
-				headerHref={"/"}
-				datas={allChineseSeries}
-			/>
-		</section>
+				<ListsTray
+					headerTitle="Chinese Shows"
+					headerHref={"/"}
+					datas={allChineseSeries}
+				/>
+			</section>
+		</Suspense>
 	);
 };
 

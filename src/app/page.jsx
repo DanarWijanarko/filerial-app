@@ -1,6 +1,7 @@
 import { getListFromCompany } from "@/libs/tmdb-api";
 
 import ListsTray from "@/components/ListsTray";
+import Skeletons from "@/components/Skeleton/ListTray";
 
 export default async function Home() {
 	const company = [
@@ -72,15 +73,18 @@ export default async function Home() {
 
 	return (
 		<section className="flex min-h-screen flex-col justify-start">
-			{lists.map((list) => (
-				<ListsTray
-					key={list.id}
-					headerTitle={list.headerTitle}
-					headerHref={list.headerHref}
-					mediaType={list.mediaType}
-					datas={list.datas}
-				/>
-			))}
+			{/* <Skeletons /> */}
+			{lists.map((list) => {
+				return (
+					<ListsTray
+						key={list.id}
+						headerTitle={list.headerTitle}
+						headerHref={list.headerHref}
+						mediaType={list.mediaType}
+						datas={list.datas}
+					/>
+				);
+			})}
 		</section>
 	);
 }
