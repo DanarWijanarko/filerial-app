@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getCountryName } from "./country-iso";
 
 const apiKey = process.env.NEXT_PUBLIC_APIKEY;
 const baseUrl = process.env.NEXT_PUBLIC_BASEURL;
@@ -50,8 +51,8 @@ export class Search {
 		return response.data.results;
 	};
 
-	collection = async (query) => {
-		const response = await axios.get(`${baseUrl}/search/collection`, {
+	person = async (query) => {
+		const response = await axios.get(`${baseUrl}/search/person`, {
 			params: {
 				api_key: apiKey,
 				query: query,
@@ -189,11 +190,42 @@ export class Person {
 				},
 			}
 		);
-		return response;
+		return response.data.cast;
 	};
 }
 
 export class Movies {
+	getDiscovered = async (year, country, page) => {
+		const response = await axios.get(`${baseUrl}/discover/movie`, {
+			params: {
+				api_key: apiKey,
+				primary_release_year: year,
+				with_origin_country: country,
+				sort_by: "popularity.desc",
+				page: page,
+			},
+		});
+		return response.data.results;
+	};
+
+	getTrending = async () => {
+		const response = await axios.get(`${baseUrl}/trending/movie/day`, {
+			params: {
+				api_key: apiKey,
+			},
+		});
+		return response.data.results;
+	};
+
+	getCountry = async (movie_id) => {
+		const response = await axios.get(`${baseUrl}/movie/${movie_id}`, {
+			params: {
+				api_key: apiKey,
+			},
+		});
+		return getCountryName(response.data.production_countries[0].iso_3166_1);
+	};
+
 	getDetail = async (movie_id) => {
 		const response = await axios.get(`${baseUrl}/movie/${movie_id}`, {
 			params: {

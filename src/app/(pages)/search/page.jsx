@@ -8,6 +8,7 @@ import { getAllTrending, Search } from "@/libs/tmdb-api";
 import AllCards from "@/components/card/AllCards";
 import InputSearch from "@/components/InputSearch";
 import CompanyCard from "@/components/card/CompanyCard";
+import PersonsCard from "@/components/card/PersonsCard";
 
 const Page = () => {
 	const searchParams = useSearchParams();
@@ -28,8 +29,8 @@ const Page = () => {
 						response = await search.multi(queryParams);
 					} else if (filterParams === "companies") {
 						response = await search.company(queryParams);
-					} else if (filterParams === "collections") {
-						response = await search.collection(queryParams);
+					} else if (filterParams === "persons") {
+						response = await search.person(queryParams);
 					}
 				} else {
 					response = await getAllTrending();
@@ -58,7 +59,11 @@ const Page = () => {
 				/>
 			));
 			break;
-		// Search by Person
+		case "persons":
+			content = allTrending.map((person) => (
+				<PersonsCard key={person.id} data={person} />
+			));
+			break;
 		default:
 			content = allTrending.map((trending) => (
 				<AllCards key={trending.id} data={trending} />
@@ -67,7 +72,7 @@ const Page = () => {
 
 	return (
 		<div className="pt-10 mx-11">
-			<InputSearch />
+			<InputSearch oldFilterValue={searchParams.get("filter")} />
 
 			<div className="flex justify-start text-xl font-bold mt-10">
 				<h1 className="text-white">

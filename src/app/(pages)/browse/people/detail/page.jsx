@@ -4,12 +4,13 @@ import React, { useEffect, useState } from "react";
 
 import { useSearchParams } from "next/navigation";
 
-import { Person } from "@/libs/tmdb-api";
+import { Person, Movies, Coba } from "@/libs/tmdb-api";
 
 import PersonDetail from "@/components/person/PersonDetail";
 import Divider from "@/components/Utilities/Divider";
 import PersonImages from "@/components/person/PersonImages";
 import PersonSeries from "@/components/person/PersonSeries";
+import PersonMovies from "@/components/person/PersonMovies";
 
 const Page = () => {
 	const searchParams = useSearchParams();
@@ -38,8 +39,6 @@ const Page = () => {
 		});
 	}, []);
 
-	console.log(personMovies);
-
 	return (
 		<div className="flex flex-col mx-11">
 			<PersonDetail personDetail={personDetail} />
@@ -51,6 +50,10 @@ const Page = () => {
 			<Divider />
 
 			<PersonSeries data={personSeries} />
+
+			<Divider />
+
+			<PersonMovies data={personMovies} />
 		</div>
 	);
 };

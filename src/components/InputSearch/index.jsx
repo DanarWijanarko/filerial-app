@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
 
-const InputSearch = () => {
+const InputSearch = ({ oldFilterValue }) => {
 	const searchRef = useRef();
 	const filterRef = useRef();
 	const filterButtonRef = useRef();
@@ -11,7 +11,9 @@ const InputSearch = () => {
 	const router = useRouter();
 
 	const [isFilterOpen, setIsFilterOpen] = useState(false);
-	const [radioValue, setRadioValue] = useState("movieSeries");
+	const [radioValue, setRadioValue] = useState(
+		oldFilterValue ? oldFilterValue : "movieSeries"
+	);
 	const [typeValue, setTypeValue] = useState(null);
 
 	const handleSearching = (event) => {
@@ -205,8 +207,8 @@ const InputSearch = () => {
 					<input
 						id="radio3"
 						type="radio"
-						value="collections"
-						checked={radioValue === "collections"}
+						value="persons"
+						checked={radioValue === "persons"}
 						onChange={filterValue}
 						className="bg-transparent"
 					/>
@@ -214,7 +216,7 @@ const InputSearch = () => {
 						htmlFor="radio3"
 						className="w-full text-sm font-medium text-white"
 					>
-						Collections
+						Persons
 					</label>
 				</div>
 			</div>

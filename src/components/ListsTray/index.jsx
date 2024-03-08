@@ -55,26 +55,26 @@ const ListsTray = ({ headerTitle, headerHref, mediaType, datas }) => {
 										<h3 className="text-white text-start text-2xl font-medium whitespace-nowrap overflow-hidden text-ellipsis">
 											{response.name}
 										</h3>
-										<div className="pt-1 pb-2 flex flex-row gap-2">
-											<p className="text-[#8c95af] text-md">
+										<div className="py-2 flex flex-row gap-2">
+											<p className="text-[#8c95af] text-sm">
 												{response.year}
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												&#x2022;
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												{response.countries}
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												&#x2022;
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												{response.rating}
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												&#x2022;
 											</p>
-											<p className="text-[#8c95af] text-md">
+											<p className="text-[#8c95af] text-sm">
 												{response.adult}
 											</p>
 										</div>

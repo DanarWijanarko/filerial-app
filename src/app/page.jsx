@@ -1,7 +1,6 @@
 import { getListFromCompany } from "@/libs/tmdb-api";
 
 import ListsTray from "@/components/ListsTray";
-import Skeletons from "@/components/Skeleton/ListTray";
 
 export default async function Home() {
 	const company = [

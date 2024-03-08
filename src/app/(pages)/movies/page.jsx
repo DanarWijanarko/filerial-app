@@ -1,11 +1,22 @@
+import { Movies } from "@/libs/tmdb-api";
 import React from "react";
 
-const Movies = () => {
+import ListsTray from "@/components/ListsTray";
+
+const Page = async () => {
+	const trendingMovies = await new Movies().getTrending();
+
 	return (
-		<div className="text-white text-3xl font-bold">
-			<h1>Movies Pages</h1>
-		</div>
+		<section className="flex min-h-screen flex-col justify-start">
+			<ListsTray
+				key={trendingMovies.id}
+				headerTitle="Trending Movies"
+				headerHref={`/browse/company?title=featuring-trending-movies&id=${"w"}&type=movies`}
+				mediaType="movies"
+				datas={trendingMovies}
+			/>
+		</section>
 	);
 };
 
-export default Movies;
+export default Page;

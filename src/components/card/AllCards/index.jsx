@@ -35,19 +35,19 @@ const AllCards = ({ data, type }) => {
 						{response.name}
 					</h3>
 					<div className="py-1 flex flex-row gap-2">
-						<p className="text-[#8c95af] text-md">
+						<p className="text-[#8c95af] text-sm">
 							{response.year}
 						</p>
-						<p className="text-[#8c95af] text-md">&#x2022;</p>
-						<p className="text-[#8c95af] text-md">
+						<p className="text-[#8c95af] text-sm">&#x2022;</p>
+						<p className="text-[#8c95af] text-sm">
 							{response.countries}
 						</p>
-						<p className="text-[#8c95af] text-md">&#x2022;</p>
-						<p className="text-[#8c95af] text-md">
+						<p className="text-[#8c95af] text-sm">&#x2022;</p>
+						<p className="text-[#8c95af] text-sm">
 							{response.rating}
 						</p>
-						<p className="text-[#8c95af] text-md">&#x2022;</p>
-						<p className="text-[#8c95af] text-md">
+						<p className="text-[#8c95af] text-sm">&#x2022;</p>
+						<p className="text-[#8c95af] text-sm">
 							{response.adult}
 						</p>
 					</div>
